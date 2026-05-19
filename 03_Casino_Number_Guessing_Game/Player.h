@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -19,7 +18,7 @@ public:
 
 
     void addMoney(int amount) { currentMoney += amount; } 
-    void subtractMoney(int amount) { currentMoney -= amount; }
+    void substractMoney(int amount) { currentMoney -= amount; }
 
     void updateResult(bool win) { (win) ? wins+=1 : losses+=1; }
 

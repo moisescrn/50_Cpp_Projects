@@ -7,7 +7,7 @@ Player::Player(string name, float initMoney) {
     currentMoney = initMoney;
     wins = 0;
     losses = 0;
-    printf("The player %s has entered the casino with %.2f\n", playerName.c_str(), currentMoney);
+    printf("The player %s has entered the casino with %.2f€\n", playerName.c_str(), currentMoney);
 }
 
 void Player::displayStats() {
