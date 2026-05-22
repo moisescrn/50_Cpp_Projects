@@ -11,8 +11,8 @@ public:
     // Constructor
     Game();
 
-    void chooseDifficulty(int diff);
+    void setDifficulty(int diff);
     void generateNumber();
-    void Playround(Player &pl);
+    bool Playround(Player &pl, double playerBet, int playerGuess);
 };
 #endif /*GAME_H*/

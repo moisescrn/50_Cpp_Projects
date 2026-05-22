@@ -12,7 +12,7 @@ Game::Game(){
     difficulty = 2;
 }
 
-void Game::chooseDifficulty(int diff) {
+void Game::setDifficulty(int diff) {
     switch (diff) {
         case 0:
             difficulty = 0;
@@ -43,34 +43,19 @@ void Game::generateNumber() {
 
 }
 
-void Game::Playround(Player &pl) {
-    int userGuess;
-    double userBet;
+bool Game::Playround(Player &pl, double playerBet, int playerGuess) {
     bool won;
 
     vector<int> rewards = {5, 10, 50, 100}; // lets make a "fair" casino (i.e.: irreal),
                                             // where the player has no losses over time
-    vector<int> guessingRanges = {5, 10, 50, 100}; // Range of guessing depending on difficulty
-    string difficulties[4] = {"easy", "medium", "hard", "extreme"};
-
-    cout << "Welcome to the guessing game!" << endl;
-    cout << "How much money do you want to bet? You have " << pl.getBalance() << "€ aviable" << endl;
-    cin >> userBet;
-    pl.substractMoney(userBet);
-    cout << "The current difficulty is set to " << difficulties[difficulty];
-    cout << ", so you have to guess a number between 1 and " << guessingRanges[difficulty] << endl;
+    pl.substractMoney(playerBet);
+    won = ((playerGuess == secretNumber) ? true : false);
     
-    cin >> userGuess;
-    won = ((userGuess == secretNumber) ? true : false);
-    if (won) {
-        pl.addMoney(rewards[difficulty]*userBet);
-        cout << "You have guessed correctly! Now you have " << pl.getBalance() << "€" << endl;
+    if (won)
+        pl.addMoney(rewards[difficulty]*playerBet);
 
-        pl.updateResult(won);
-        return;
-    }
-
-    cout << "You have lost! Now you have " << pl.getBalance() << "€" << endl;
     pl.updateResult(won);
-    return;
+    return won;
+
+    
 }
